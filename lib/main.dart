@@ -1,4 +1,5 @@
-import 'package:baby_names_bestmom/screens/home_screen.dart';
+import 'package:baby_names_bestmom/screens/homeTabs/home_screen.dart';
+import 'package:baby_names_bestmom/screens/loading_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           scaffoldBackgroundColor: klightYelloBg, primaryColor: Colors.white),
-      home: HomeScreen(),
+      // home: HomeScreen(),
+      home: LoadingScreen(),
     );
   }
 }
