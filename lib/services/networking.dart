@@ -16,6 +16,18 @@ class NetworkHelper {
     }
   }
 
+  Future getArticle() async {
+    var response = await http.get(url);
+    if (response.statusCode == 200) {
+      var jsonResponse = convert.jsonDecode(response.body);
+      // print(jsonResponse);
+      // sending only the names list ** we also have query condition , page and has next objects
+      return jsonResponse;
+    } else {
+      print('failed response');
+    }
+  }
+
   Future postMethod(body) async {
     var response = await http.post(
       url,

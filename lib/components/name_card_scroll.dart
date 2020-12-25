@@ -74,24 +74,33 @@ class NameCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           '${name.religion} name',
                           style: kreligionText,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(4.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
                           child: Image(
-                            image: AssetImage('./images/images/bible.png'),
-                            height: 30,
+                            image: AssetImage(
+                                'images/religion/${name.religion}.png'),
+                            height: 20,
                           ),
                         ),
                       ],
                     ),
-                    Text(
-                      name.meaning,
-                      style: kreligionText,
+                    Wrap(
+                      children: [
+                        Text(
+                          'Meaning : ',
+                          style: kmeaningHeaderStyle,
+                        ),
+                        Text(
+                          name.meaning,
+                          style: kmeaningTextStyle,
+                        ),
+                      ],
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                       Container(
@@ -107,9 +116,9 @@ class NameCard extends StatelessWidget {
                                           name: name,
                                         )));
                           },
-                          child: Text('Know More ->',
+                          child: Text('Details',
                               style: TextStyle(
-                                  color: kyellowAvatarBg,
+                                  color: Colors.black87,
                                   fontWeight: FontWeight.bold)),
                         ),
                       ),

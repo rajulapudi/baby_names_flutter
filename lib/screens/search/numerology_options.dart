@@ -10,29 +10,39 @@ class NumerologyDropDown extends StatelessWidget {
     return Container(
       child: Column(children: [
         DropdownButton(
-            value: qdata.numerology != null ? qdata.numerology : 'Number',
-            icon: Icon(Icons.arrow_downward),
-            iconSize: 24,
+            value: qdata.numerology,
+            icon: Icon(
+              Icons.arrow_downward_rounded,
+              color: kyellowAvatarBg,
+            ),
+            iconSize: 20,
+            hint: Text('Number'),
             elevation: 16,
-            style: TextStyle(color: kPrimaryColor),
+            style: TextStyle(color: Colors.black54),
             underline: Container(
-              height: 2,
+              height: 1,
               color: kPrimaryColor,
             ),
-            items: [
-              'Number',
-              '1',
-              '2',
-              '3',
-              '4',
-              '5',
-              '6',
-              '7',
-              '8',
-              '9',
-              '11',
-              '22'
-            ].map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
+            items: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '11', '22']
+                .map((e) => DropdownMenuItem(
+                    value: e,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                            backgroundColor: kyellowAvatarBg,
+                            radius: 14.0,
+                            child: CircleAvatar(
+                              backgroundColor: klightYelloBg,
+                              radius: 13.0,
+                              child: Text(
+                                e,
+                                style: TextStyle(color: kblueColor),
+                              ),
+                            )),
+                      ],
+                    )))
+                .toList(),
             onChanged: (value) {
               if (value != 'Number') {
                 qdata.updateNumerology(value);

@@ -17,6 +17,8 @@ const kreligionText = TextStyle(
     color: Colors.black38, fontSize: 16.0, fontWeight: FontWeight.w400);
 const kmeaningTextStyle = TextStyle(
     color: Colors.black38, fontSize: 16.0, fontWeight: FontWeight.w400);
+const kmeaningHeaderStyle = TextStyle(
+    color: Colors.black54, fontSize: 16.0, fontWeight: FontWeight.w700);
 
 const kPrimaryColor = Color(0xFF293FDA);
 const kSecondaryColor = Color(0xFFFFDE03);

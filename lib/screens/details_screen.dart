@@ -35,154 +35,141 @@ class DetailScreen extends StatelessWidget {
             ),
           ],
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 18.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20.0),
-                      topRight: Radius.circular(20.0))),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Container(
-                          child: Column(children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 20.0, bottom: 10.0),
-                          child: CircleAvatar(
-                              radius: 30.0,
-                              backgroundColor: klightblueColor,
-                              child: Image.asset(
-                                'images/avatars/boy-1.png',
-                                height: 52.0,
-                              )),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10.0),
-                          child: Text(
-                            name.name,
+        body: SafeArea(
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(20.0))),
+            child: Column(children: [
+              Padding(
+                padding: EdgeInsets.only(top: 20.0, bottom: 10.0),
+                child: CircleAvatar(
+                    radius: 30.0,
+                    backgroundColor: klightblueColor,
+                    child: Image.asset(
+                      'images/avatars/boy-1.png',
+                      height: 52.0,
+                    )),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Text(
+                  name.name,
+                  style: kHeadingTextStyle,
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    child: CardYellow(
+                        icon: Icons.location_on,
+                        value: name.origin,
+                        keyvalue: 'origin',
+                        isIcon: true),
+                  ),
+                  Expanded(
+                    child: CardYellow(
+                        icon: Icons.crop_square_sharp,
+                        value: name.religion,
+                        keyvalue: 'religion',
+                        isIcon: false,
+                        religion: name.religion),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Meaning',
                             style: kHeadingTextStyle,
                           ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Expanded(
-                              child: CardYellow(
-                                icon: Icons.ad_units,
-                                value: name.origin,
-                                keyvalue: 'origin',
-                              ),
-                            ),
-                            Expanded(
-                              child: CardYellow(
-                                icon: Icons.map,
-                                value: name.religion,
-                                keyvalue: 'religion',
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              child: Padding(
-                                padding: const EdgeInsets.all(18.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Meaning',
-                                      style: kHeadingTextStyle,
-                                    ),
-                                    SizedBox(
-                                      height: 10.0,
-                                    ),
-                                    Text(
-                                      name.meaning,
-                                      style: kmeaningTextStyle,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 18.0),
-                            child: Row(children: [
-                              Usps(
-                                text: name.numerology.toString(),
-                                label: 'Numerology',
-                              ),
-                              Usps(
-                                text: '??',
-                                label: 'Popularity',
-                              ),
-                              Usps(
-                                text: '??',
-                                label: 'Uniqueness',
-                              ),
-                            ]),
+                          SizedBox(
+                            height: 10.0,
                           ),
-                        ),
-                        Container(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                    decoration: BoxDecoration(
-                                        color: klightYelloBg,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0)),
-                                    child: FlatButton(
-                                        onPressed: () {
-                                          _favslist.toggleFav(name);
-                                        },
-                                        child: name.isFav
-                                            ? Icon(
-                                                Icons.favorite,
-                                                color: Colors.red,
-                                              )
-                                            : Icon(
-                                                Icons.favorite_border_outlined,
-                                                color: kyellowAvatarBg,
-                                              ))),
-                              ),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                      decoration: BoxDecoration(
-                                          color: klightYelloBg,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0)),
-                                      child: FlatButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text(
-                                          'Explore More Names',
-                                          style: kactionText,
-                                        ),
-                                      )),
-                                ),
-                              )
-                            ]),
+                          Text(
+                            name.meaning,
+                            style: kmeaningTextStyle,
                           ),
-                        ),
-                      ]))
-                    ]),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                  child: Row(children: [
+                    Usps(
+                      text: name.numerology.toString(),
+                      label: 'Numerology',
+                    ),
+                    Usps(
+                      text: '??',
+                      label: 'Popularity',
+                    ),
+                    Usps(
+                      text: '??',
+                      label: 'Uniqueness',
+                    ),
+                  ]),
+                ),
+              ),
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                          decoration: BoxDecoration(
+                              color: klightYelloBg,
+                              borderRadius: BorderRadius.circular(8.0)),
+                          child: FlatButton(
+                              onPressed: () {
+                                _favslist.toggleFav(name);
+                              },
+                              child: name.isFav
+                                  ? Icon(
+                                      Icons.favorite,
+                                      color: Colors.red,
+                                    )
+                                  : Icon(
+                                      Icons.favorite_border_outlined,
+                                      color: kyellowAvatarBg,
+                                    ))),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                            decoration: BoxDecoration(
+                                color: klightYelloBg,
+                                borderRadius: BorderRadius.circular(8.0)),
+                            child: FlatButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                'Explore More Names',
+                                style: kactionText,
+                              ),
+                            )),
+                      ),
+                    )
+                  ]),
+                ),
+              ),
+            ]),
           ),
         ),
       ),

@@ -30,6 +30,9 @@ dependencies:
   flutter_spinkit: ^4.1.2+1
   http: ^0.12.2
   provider: ^4.3.2+3
+  infinite_scroll_pagination: ^2.2.3
+  strings: ^0.1.4
+  flutter_webview_plugin: ^0.3.11
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +52,8 @@ flutter:
   assets:
     - images/avatars/
     - images/images/
+    - images/religion/
+    - images/rasi/
     - images/images/baby1.png
 
   # An image asset can refer to one or more resolution-specific "variants", see

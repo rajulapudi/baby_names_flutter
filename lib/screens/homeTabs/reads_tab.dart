@@ -1,35 +1,33 @@
-import 'package:baby_names_bestmom/components/search_results_tile.dart';
-import 'package:baby_names_bestmom/models/name_model.dart';
+import 'package:baby_names_bestmom/components/article_tile.dart';
+import 'package:baby_names_bestmom/models/articles_model.dart';
 import 'package:baby_names_bestmom/services/names_api.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../constants.dart';
 
-class SearchResultsPage extends StatefulWidget {
-  final Map<String, String> q;
-  SearchResultsPage({this.q});
+class ReadsTab extends StatefulWidget {
   @override
-  _SearchResultsPageState createState() => _SearchResultsPageState();
+  _ReadsTabState createState() => _ReadsTabState();
 }
 
-class _SearchResultsPageState extends State<SearchResultsPage> {
+class _ReadsTabState extends State<ReadsTab> {
   static const _pageSize = 10;
-  final _pagingController = PagingController<int, Name>(
+  final _pagingController = PagingController<int, ArticleModel>(
     firstPageKey: 0,
   );
 
   @override
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
-      _fetchPage(widget.q, pageKey);
+      _fetchPage(pageKey);
     });
     super.initState();
   }
 
-  Future<void> _fetchPage(Map<String, String> q, int pageKey) async {
+  Future<void> _fetchPage(int pageKey) async {
     try {
-      final newItems = await NamesApiModel().getNamesPaginated(q, pageKey);
+      final newItems = await NamesApiModel().getNamesArticles(pageKey);
       final isLastPage = newItems.length < _pageSize;
 
       if (isLastPage) {
@@ -64,25 +62,14 @@ class _SearchResultsPageState extends State<SearchResultsPage> {
       Theme(
           data: new ThemeData.dark(),
           child: Scaffold(
-            backgroundColor: kblueColor,
+            backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: kblueColor,
               elevation: 0.0,
-              title: SizedBox(
-                child: Center(
-                  child: Text(
-                    'Search Results',
-                    style: TextStyle(fontSize: 14.0),
-                  ),
-                ),
+              title: Text(
+                'Interesting Reads',
+                style: TextStyle(fontSize: 14.0),
               ),
-              actions: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.share),
-                  tooltip: 'Share Name',
-                  onPressed: () {},
-                ),
-              ],
             ),
             body: RefreshIndicator(
               onRefresh: () => Future.sync(
@@ -97,9 +84,9 @@ class _SearchResultsPageState extends State<SearchResultsPage> {
                 separatorBuilder: (context, index) => const SizedBox(
                   height: 1,
                 ),
-                builderDelegate: PagedChildBuilderDelegate<Name>(
-                  itemBuilder: (context, name, index) => SearchResultTile(
-                    name: name,
+                builderDelegate: PagedChildBuilderDelegate<ArticleModel>(
+                  itemBuilder: (context, article, index) => ArticlesTile(
+                    article: article,
                   ),
                   // firstPageErrorIndicatorBuilder: (context) => ErrorIndicator(
                   //   error: _pagingController.error,

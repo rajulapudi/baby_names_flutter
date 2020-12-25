@@ -6,7 +6,14 @@ class CardYellow extends StatelessWidget {
   final IconData icon;
   final String value;
   final String keyvalue;
-  CardYellow({@required this.icon, this.keyvalue, this.value});
+  final String religion;
+  final bool isIcon;
+  CardYellow(
+      {@required this.icon,
+      this.keyvalue,
+      this.value,
+      this.religion,
+      this.isIcon});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,21 +27,21 @@ class CardYellow extends StatelessWidget {
             child: CircleAvatar(
               radius: 30.0,
               backgroundColor: kyellowAvatarBg,
-              child: Icon(icon),
+              child: isIcon
+                  ? Icon(icon)
+                  : Image.asset('images/religion/$religion.png', height: 24.0),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(18.0),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(value,
                     style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.black54)),
-                SizedBox(
-                  width: 10.0,
-                ),
                 Text(
                   keyvalue,
                   style: TextStyle(color: Colors.black54),

@@ -1,7 +1,6 @@
 import 'package:baby_names_bestmom/models/query_cond.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import '../../constants.dart';
 import 'gender_card.dart';
 
 class GenderSelection extends StatelessWidget {
@@ -11,20 +10,20 @@ class GenderSelection extends StatelessWidget {
     final qdata = context.watch<QueryCond>();
     return Column(
       children: [
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: kDefaultPadding),
-              child: Text(
-                "Gender",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: kPrimaryColor),
-              ),
-            ),
-          ],
-        ),
+        // Row(
+        //   children: [
+        //     Padding(
+        //       padding: const EdgeInsets.only(left: kDefaultPadding),
+        //       child: Text(
+        //         "Gender",
+        //         style: TextStyle(
+        //             fontSize: 20,
+        //             fontWeight: FontWeight.bold,
+        //             color: kPrimaryColor),
+        //       ),
+        //     ),
+        //   ],
+        // ),
         Row(
           children: [
             GenderCard(

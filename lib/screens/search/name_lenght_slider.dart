@@ -2,7 +2,6 @@ import 'package:baby_names_bestmom/models/query_cond.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../constants.dart';
-import 'dart:convert';
 
 class NameLengthSlider extends StatelessWidget {
   @override
@@ -18,11 +17,11 @@ class NameLengthSlider extends StatelessWidget {
                 Expanded(
                   child: SliderTheme(
                     data: SliderTheme.of(context).copyWith(
-                      activeTrackColor: Colors.red[700],
-                      inactiveTrackColor: Colors.red[100],
+                      activeTrackColor: kyellowAvatarBg,
+                      inactiveTrackColor: kyellowAvatarBg,
                       trackShape: RectangularSliderTrackShape(),
                       trackHeight: 4.0,
-                      thumbColor: Colors.redAccent,
+                      // thumbColor: Colors.redAccent,
                       thumbShape:
                           RoundSliderThumbShape(enabledThumbRadius: 12.0),
                       overlayColor: Colors.red.withAlpha(32),

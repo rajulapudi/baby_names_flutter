@@ -11,17 +11,15 @@ class FavoriteButton extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
             color: klightYelloBg, borderRadius: BorderRadius.circular(8.0)),
-        child: FlatButton(
+        child: IconButton(
           onPressed: onPressed,
-          child: status
+          icon: status
               ? Icon(
                   Icons.favorite,
                   color: Colors.red,
                 )
-              : Icon(
-                  Icons.favorite_border_outlined,
-                  color: kyellowAvatarBg,
-                ),
+              : Icon(Icons.favorite,
+                  color: kyellowAvatarBg, semanticLabel: 'shortlist'),
         ));
     // return GestureDetector(
     //   onTap: () {

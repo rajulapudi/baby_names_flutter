@@ -1,20 +1,18 @@
 import 'package:baby_names_bestmom/constants.dart';
-import 'package:baby_names_bestmom/models/name_model.dart';
 import 'package:baby_names_bestmom/screens/homeTabs/home_tab.dart';
+import 'package:baby_names_bestmom/screens/homeTabs/reads_tab.dart';
 import 'package:flutter/material.dart';
-
 
 import 'favs_tab.dart';
 
 class HomeScreen extends StatefulWidget {
-  final List<Name> popularNames;
-  HomeScreen({this.popularNames});
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+
   List<Widget> _widgetOptions;
   void _onItemTapped(int index) {
     setState(() {
@@ -25,15 +23,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     _widgetOptions = <Widget>[
-      HomeTab(
-        popularNames: widget.popularNames,
-      ),
+      HomeTab(),
       FavsTab(),
-      Text(
-        'Reads',
-      ),
+      ReadsTab(),
     ];
-
     super.initState();
   }
 
