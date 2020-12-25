@@ -1,5 +1,6 @@
 import 'package:baby_names_bestmom/components/name_card_scroll.dart';
 import 'package:baby_names_bestmom/models/name_model.dart';
+import 'package:baby_names_bestmom/screens/search/search_main.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
@@ -19,9 +20,23 @@ class HomeTab extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Find ',
-                  style: ksubHeadingTextStyle,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Find ',
+                      style: ksubHeadingTextStyle,
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.search),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SearchScreen()));
+                      },
+                    )
+                  ],
                 ),
                 SizedBox(height: 10.0),
                 Text(

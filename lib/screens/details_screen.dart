@@ -1,11 +1,17 @@
 import 'package:baby_names_bestmom/components/card_yellow.dart';
 import 'package:baby_names_bestmom/components/usp_avatars.dart';
 import 'package:baby_names_bestmom/constants.dart';
+import 'package:baby_names_bestmom/models/favorites_list.dart';
+import 'package:baby_names_bestmom/models/name_model.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class DetailScreen extends StatelessWidget {
+  final Name name;
+  const DetailScreen({Key key, this.name}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final _favslist = context.watch<FavList>();
     return Theme(
       data: new ThemeData.dark(),
       child: Scaffold(
@@ -16,7 +22,7 @@ class DetailScreen extends StatelessWidget {
           title: SizedBox(
             child: Center(
               child: Text(
-                'Details of "Mercede"',
+                'Details of "${name.name}"',
                 style: TextStyle(fontSize: 14.0),
               ),
             ),
@@ -58,7 +64,7 @@ class DetailScreen extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 10.0),
                           child: Text(
-                            'Mersede',
+                            name.name,
                             style: kHeadingTextStyle,
                           ),
                         ),
@@ -68,39 +74,43 @@ class DetailScreen extends StatelessWidget {
                             Expanded(
                               child: CardYellow(
                                 icon: Icons.ad_units,
-                                value: 'Kurdish',
+                                value: name.origin,
                                 keyvalue: 'origin',
                               ),
                             ),
                             Expanded(
                               child: CardYellow(
                                 icon: Icons.map,
-                                value: 'Christian',
+                                value: name.religion,
                                 keyvalue: 'religion',
                               ),
                             ),
                           ],
                         ),
-                        Container(
-                          child: Padding(
-                            padding: const EdgeInsets.all(18.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Meaning',
-                                  style: kHeadingTextStyle,
+                        Row(
+                          children: [
+                            Container(
+                              child: Padding(
+                                padding: const EdgeInsets.all(18.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Meaning',
+                                      style: kHeadingTextStyle,
+                                    ),
+                                    SizedBox(
+                                      height: 10.0,
+                                    ),
+                                    Text(
+                                      name.meaning,
+                                      style: kmeaningTextStyle,
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(
-                                  height: 10.0,
-                                ),
-                                Text(
-                                  'Meaning of the name is somthing that will come from database',
-                                  style: kmeaningTextStyle,
-                                ),
-                              ],
+                              ),
                             ),
-                          ),
+                          ],
                         ),
                         Container(
                           child: Padding(
@@ -108,7 +118,7 @@ class DetailScreen extends StatelessWidget {
                                 const EdgeInsets.symmetric(horizontal: 18.0),
                             child: Row(children: [
                               Usps(
-                                text: '1',
+                                text: name.numerology.toString(),
                                 label: 'Numerology',
                               ),
                               Usps(
@@ -134,12 +144,18 @@ class DetailScreen extends StatelessWidget {
                                         borderRadius:
                                             BorderRadius.circular(8.0)),
                                     child: FlatButton(
-                                      onPressed: () {},
-                                      child: Icon(
-                                        Icons.favorite_border_outlined,
-                                        color: kyellowAvatarBg,
-                                      ),
-                                    )),
+                                        onPressed: () {
+                                          _favslist.toggleFav(name);
+                                        },
+                                        child: name.isFav
+                                            ? Icon(
+                                                Icons.favorite,
+                                                color: Colors.red,
+                                              )
+                                            : Icon(
+                                                Icons.favorite_border_outlined,
+                                                color: kyellowAvatarBg,
+                                              ))),
                               ),
                               Expanded(
                                 child: Padding(
@@ -150,7 +166,9 @@ class DetailScreen extends StatelessWidget {
                                           borderRadius:
                                               BorderRadius.circular(8.0)),
                                       child: FlatButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
                                         child: Text(
                                           'Explore More Names',
                                           style: kactionText,

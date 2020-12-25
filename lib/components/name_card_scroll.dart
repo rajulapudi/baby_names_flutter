@@ -1,9 +1,9 @@
 import 'dart:math';
-
+import 'package:baby_names_bestmom/models/favorites_list.dart';
 import 'package:baby_names_bestmom/models/name_model.dart';
 import 'package:baby_names_bestmom/screens/details_screen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import '../constants.dart';
 import 'favorite_button.dart';
 
@@ -17,12 +17,13 @@ class NameCard extends StatelessWidget {
     int max = 23;
     rnd = new Random();
     int numb = min + rnd.nextInt(max - min);
-    print(numb); // need 1 - 6 numbers
+    // need 1 - 6 numbers
     return numb;
   }
 
   @override
   Widget build(BuildContext context) {
+    final _favslist = context.watch<FavList>();
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -54,7 +55,11 @@ class NameCard extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Text(name.name, style: ksubHeadingTextStyle),
                   )),
-                  FavoriteButton(),
+                  FavoriteButton(
+                      status: name.isFav,
+                      onPressed: () {
+                        _favslist.toggleFav(name);
+                      }),
                   // SizedBox(width: 15.0),
                   // Icon(
                   //   Icons.close,
@@ -98,7 +103,9 @@ class NameCard extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => DetailScreen()));
+                                    builder: (context) => DetailScreen(
+                                          name: name,
+                                        )));
                           },
                           child: Text('Know More ->',
                               style: TextStyle(

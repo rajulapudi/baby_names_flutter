@@ -3,6 +3,9 @@ import 'package:baby_names_bestmom/models/name_model.dart';
 import 'package:baby_names_bestmom/screens/homeTabs/home_tab.dart';
 import 'package:flutter/material.dart';
 
+
+import 'favs_tab.dart';
+
 class HomeScreen extends StatefulWidget {
   final List<Name> popularNames;
   HomeScreen({this.popularNames});
@@ -25,9 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
       HomeTab(
         popularNames: widget.popularNames,
       ),
-      Text(
-        'Favorites',
-      ),
+      FavsTab(),
       Text(
         'Reads',
       ),

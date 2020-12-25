@@ -14,7 +14,10 @@ class Usps extends StatelessWidget {
           CircleAvatar(
               radius: 25.0,
               backgroundColor: klightblueColor,
-              child: Text(text)),
+              child: Text(
+                text,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )),
           Text(
             label,
             style: klabelText,
